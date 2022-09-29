@@ -3,7 +3,7 @@
 use Psr\Container\ContainerInterface;
 use Slim\App;
 use Slim\Factory\AppFactory;
-use PDO as PDOProvider;
+use \Illuminate\Database\Capsule\Manager as DB;
 
 
 return [
@@ -17,20 +17,17 @@ return [
         return AppFactory::create();
     },
 
-    // Db::class => DI\create()->constructor(DI\get(Db::class))
-    PDO::class => function (ContainerInterface $container) {
+    DB::class => function (ContainerInterface $container) {
 
-        $settings = $container->get('settings');  
+        $settings = $container->get('settings');
 
-        $host = $settings['host'];
-        $user = $settings['username'];
-        $pass = $settings['password'];
-        $db = $settings['database'];
+        $capsule = new DB();
 
-        $connectionString = "mysql:host=$host;dbname=$db";
-        $connection = new PDOProvider($connectionString, $user, $pass);
-        $connection->setAttribute(PDOProvider::ATTR_ERRMODE, PDOProvider::ERRMODE_EXCEPTION);
-        return $connection;
+        $capsule->addConnection($settings['db']);
+        $capsule->setAsGlobal();
+        $capsule->bootEloquent();
+
+        return $capsule;
     }
 
 ];

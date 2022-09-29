@@ -3,7 +3,9 @@
         "slim/slim": "4.*",
         "slim/psr7": "^1.5",
         "selective/basepath": "^2.1",
-        "php-di/php-di": "^6.4"
+        "php-di/php-di": "^6.4",
+        "illuminate/database": "^9.32",
+        "davidepastore/slim-validation": "^0.5.1"
     },
     "autoload": {
         "psr-4": {

@@ -1,9 +1,8 @@
 <?php
 
 use Slim\App;
-use PDO as DB;
 
-return function (App $app,DB $db) {
+return function (App $app) {
 
     // Parse json, form data and xml
     $app->addBodyParsingMiddleware();

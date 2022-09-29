@@ -2,7 +2,7 @@
 
 use DI\ContainerBuilder;
 use Slim\App;
-use PDO as DB;
+use \Illuminate\Database\Capsule\Manager as DB;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -19,9 +19,9 @@ $app = $container->get(App::class);
 $db = $container->get(DB::class);
 
 // Register routes
-(require __DIR__ . '/../routes/routes.php')($app,$db);
+(require __DIR__ . '/../routes/routes.php')($app);
 
 // Register middleware
-(require __DIR__ . '/../middleware/middleware.php')($app,$db);
+(require __DIR__ . '/../middleware/middleware.php')($app);
 
 return $app;

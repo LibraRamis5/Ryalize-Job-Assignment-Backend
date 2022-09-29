@@ -2,25 +2,24 @@
 
 namespace App\Action\UserAction;
 
-use PDO as DB;
 use App\Action\Action;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use App\Models\User;
+use Respect\Validation\Validator as v;
 
 final class GetUserAction extends Action{
 
-    public function __invoke(Request $request, Response $response): Response {  
+    public function __invoke(Request $request, Response $response, $args): Response {
+    
         try{
+            $users = User::all();
+            return $this->success($response,$users);
 
-            $sql = "SELECT * FROM users";
-            $stmt =  $this->db->query($sql);
-            $customers = $stmt->fetchAll(DB::FETCH_OBJ);  
-            return $this->responce($response,$customers);           
-        } catch (PDOException $e) {
-            $error = array(
-                    "message" => $e->getMessage()
-                    );
-            return $this->responce($error,500);  
+        } catch (\Exception $e) {
+            return $this->error($response,$error);
        }
+
     }
+
 }

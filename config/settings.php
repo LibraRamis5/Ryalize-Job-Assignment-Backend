@@ -1,10 +1,16 @@
 <?php
 
 $settings = [
-    'host' => 'localhost',
-    'username' => 'root',
-    'database' => 'bank',
-    'password' => '',
+    'displayErrorDetails' => true,
+    'db' => [
+        'driver' => 'mysql',
+        'host' => 'localhost',
+        'database' => 'bank',
+        'username' => 'root',
+        'password' => '',
+        'charset' => 'utf8',
+        'collation' => 'utf8_unicode_ci',
+    ]
 ];
 
 
