@@ -35,7 +35,7 @@ final class AddUserAction extends Action
             $newUser = new User();
             $newUser->user_name = $data['user_name'];
             $newUser->email = $data['email'];
-            $newUser->password = $data['password'];
+            $newUser->password = password_hash($data['password'], PASSWORD_DEFAULT);;
             $newUser->phone_no = $data['phone_no'];
             $newUser->address = $data['address'];
             $newUser->save();
