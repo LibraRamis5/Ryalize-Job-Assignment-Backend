@@ -19,10 +19,10 @@ return function (App $app) {
             $app->get('/', HomePageAction::class);
 
             // user routes
-            $app->get('/user', GetUserAction::class)->add(AuthMiddleware::class);
+            $app->get('/user', GetUserAction::class);
             $app->post('/user-login', UserLoginAction::class)->add(AuthMiddleware::class);
             $app->get('/user-single/'.'{$id}', SingleUserAction::class)->add(AuthMiddleware::class);
-            $app->get('/user-transaction', GetUserTransactionAction::class)->add(AuthMiddleware::class);
+            $app->get('/user-transaction', GetUserTransactionAction::class);
             $app->post('/user-add', AddUserAction::class)->add(AuthMiddleware::class);
             $app->put('/user-update', UpdateUserAction::class)->add(AuthMiddleware::class);
             $app->get('/location', GetLocationAction::class)->add(AuthMiddleware::class);
