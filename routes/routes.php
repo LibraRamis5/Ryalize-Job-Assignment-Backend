@@ -1,14 +1,17 @@
 <?php
 
 use Slim\App;
-use DavidePastore\Slim\Validation\Validation;
 use App\Action\UserAction\GetUserAction;
 use App\Action\UserAction\AddUserAction;
-use App\Action\UserAction\UserValidator;
+use App\Action\HomePage\HomePageAction;
 
 return function (App $app) {
 
+    // home page routes
+    $app->get('/', HomePageAction::class);
+
+    // user routes
     $app->get('/user', GetUserAction::class);
     $app->post('/user-add', AddUserAction::class);
-    
+
 };
