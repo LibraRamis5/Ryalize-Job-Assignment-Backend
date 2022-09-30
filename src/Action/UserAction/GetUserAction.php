@@ -10,6 +10,15 @@ use App\Models\User;
 
 final class GetUserAction extends Action{
 
+    /**
+     * Get all users list.
+     *
+     * @return object {
+     *           "message" : "user list",
+     *           "data" : array
+     * }
+     */
+
     public function __invoke(Request $request, Response $response, $args): Response {
     
         try{
