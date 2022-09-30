@@ -8,19 +8,27 @@ use App\Action\UserAction\GetUserTransactionAction;
 use App\Action\UserAction\SingleUserAction;
 use App\Action\Locations\GetLocationAction;
 use App\Action\HomePage\HomePageAction;
+use App\Action\UserAction\UserLoginAction;
+use App\Middleware\AuthMiddleware;
 
 return function (App $app) {
 
-    // home page routes
-    $app->get('/', HomePageAction::class);
+//    $app->group('', function () use ($app) {
 
-    // user routes
-    $app->get('/user', GetUserAction::class);
-    $app->get('/user-single/'.'{$id}', SingleUserAction::class);
-    $app->get('/user-transaction', GetUserTransactionAction::class);
-    $app->post('/user-add', AddUserAction::class);
-    $app->put('/user-update', UpdateUserAction::class);
-    $app->get('/location', GetLocationAction::class);
+            // home page routes
+            $app->get('/', HomePageAction::class);
+
+            // user routes
+            $app->get('/user', GetUserAction::class)->add(AuthMiddleware::class);
+            $app->post('/user-login', UserLoginAction::class)->add(AuthMiddleware::class);
+            $app->get('/user-single/'.'{$id}', SingleUserAction::class)->add(AuthMiddleware::class);
+            $app->get('/user-transaction', GetUserTransactionAction::class)->add(AuthMiddleware::class);
+            $app->post('/user-add', AddUserAction::class)->add(AuthMiddleware::class);
+            $app->put('/user-update', UpdateUserAction::class)->add(AuthMiddleware::class);
+            $app->get('/location', GetLocationAction::class)->add(AuthMiddleware::class);
+
+//    })->add(AuthMiddleware::class);
+
 
 
 };
