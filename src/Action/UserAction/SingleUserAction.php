@@ -8,10 +8,10 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Models\User;
 
 
-final class GetUserAction extends Action{
+final class SingleUserAction extends Action{
 
     public function __invoke(Request $request, Response $response, $args): Response {
-    
+
         try{
             $users = User::paginate(30);
             $data = ['message' => 'user list', 'data' => $users];
