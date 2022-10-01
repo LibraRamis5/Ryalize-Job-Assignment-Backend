@@ -38,11 +38,11 @@ class AuthMiddleware{
     }
 
     public function error($data) {
-        $response = new Response(); 
+        $response = new Response();
+
              $response->getBody()->write(json_encode($data));
-             $response->withHeader('content-type', 'application/json')
-                      ->withStatus(401);
-        return $response;
+             $response = $response->withHeader('content-type', 'application/json')->withStatus(401);
+             return $response;
     }
 }
 

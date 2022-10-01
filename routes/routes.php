@@ -9,6 +9,7 @@ use App\Action\UserAction\SingleUserAction;
 use App\Action\Locations\GetLocationAction;
 use App\Action\HomePage\HomePageAction;
 use App\Action\UserAction\UserLoginAction;
+use App\Action\UserAction\IsUserLoginAction;
 use App\Middleware\AuthMiddleware;
 
 return function (App $app) {
@@ -20,7 +21,8 @@ return function (App $app) {
 
             // user routes
             $app->get('/user', GetUserAction::class);
-            $app->post('/user-login', UserLoginAction::class)->add(AuthMiddleware::class);
+            $app->get('/is-user-login', IsUserLoginAction::class)->add(AuthMiddleware::class);
+            $app->post('/user-login', UserLoginAction::class);
             $app->get('/user-single/'.'{$id}', SingleUserAction::class)->add(AuthMiddleware::class);
             $app->get('/user-transaction', GetUserTransactionAction::class);
             $app->post('/user-add', AddUserAction::class)->add(AuthMiddleware::class);

@@ -3,10 +3,10 @@ namespace App\Action\UserAction;
 
 use App\Action\Action;
 use App\Auth\Auth;
-use Illuminate\Support\Facades\Hash;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Models\User;
+
 
 final class UserLoginAction extends Action
 {
@@ -16,7 +16,7 @@ final class UserLoginAction extends Action
 
         $validation = $this->validate($data, [
             'email' => 'required|email',
-            'password' =>  'required|min:8|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/'
+            'password' =>  'required'
         ]);
 
         if($validation){
@@ -25,6 +25,7 @@ final class UserLoginAction extends Action
 
         try{
 
+            die('afadfs');
             $userObject = User::where('email',$data['email'])->first();
             if ($userObject){
                 $result = Auth::login($userObject);
