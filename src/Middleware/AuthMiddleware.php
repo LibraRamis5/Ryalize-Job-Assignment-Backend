@@ -30,6 +30,9 @@ class AuthMiddleware{
                      $response = $this->error(["error" => $e->getMessage()]);
                 }
             }
+            else{
+                $response = $this->error(["error" => "Auth token cannot find."]); 
+            }
         }
         else{
             $response = $this->error(["error" => "Auth token cannot find."]);             

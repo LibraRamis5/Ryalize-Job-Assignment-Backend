@@ -12,7 +12,7 @@ final class IsUserLoginAction extends Action
     public function __invoke(Request $request, Response $response): Response{
 
         try{
-            return $this->responce($response, null, 500);
+            return $this->responce($response, '', 200);
 
         }catch(\Exception $e){
             return $this->error($response, $e->getMessage());

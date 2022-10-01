@@ -6,7 +6,6 @@ use App\Middleware\HTMLErrorMiddleware;
 
 
 return function (App $app) {
-    $app->add(CORSMiddleware::class);
 
     // Parse json, form data and xml
     $app->addBodyParsingMiddleware();
@@ -17,5 +16,7 @@ return function (App $app) {
     // Handle exceptions
     $errorMiddleware = $app->addErrorMiddleware(true, true, true);
     $errorMiddleware->setDefaultErrorHandler(HTMLErrorMiddleware::class);
+    
+    $app->add(CORSMiddleware::class);
 
 };
