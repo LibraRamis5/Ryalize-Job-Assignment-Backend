@@ -13,7 +13,7 @@ class AuthMiddleware{
 
     public function __invoke(Request $request, RequestHandler $handler): Response
     {
-        $response = $handler->handle($request);
+        
         $header = $request->getHeaderLine("Authorization");
 
         if (false === empty($header)) {
