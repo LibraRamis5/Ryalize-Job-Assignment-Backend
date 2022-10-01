@@ -25,7 +25,6 @@ final class UserLoginAction extends Action
 
         try{
 
-            die('afadfs');
             $userObject = User::where('email',$data['email'])->first();
             if ($userObject){
                 $result = Auth::login($userObject);
