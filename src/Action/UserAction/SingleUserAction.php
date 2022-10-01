@@ -10,11 +10,11 @@ use App\Models\User;
 
 final class SingleUserAction extends Action{
 
-    public function __invoke($id): Response {
-
+    public function __invoke(Request $request, Response $response,array $args): Response
+    {
         try{
-            $user = User::findOrFail($id);
-            $data = ['message' => 'user information', 'data' => $users];
+            $user = User::findOrFail($args['id']);
+            $data = ['message' => 'user information', 'data' => $user];
             return $this->success($response,$data);
 
         } catch (\Exception $e) {
