@@ -3,6 +3,7 @@
 namespace App\Middleware;
 
 use App\Auth\Auth;
+use Firebase\JWT\Key;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Psr7\Response;
@@ -18,7 +19,7 @@ class AuthMiddleware{
         if (false === empty($header)) {
             if (preg_match("/Bearer\s+(.*)$/i", $header, $matches)) {
                 try{
-                    $decoded = JWT::decode($matches[1], Auth::$secret, 'HS256');
+                    $decoded = JWT::decode($matches[1], new Key(Auth::$secret, 'HS256'));
                     if(!Auth::setAuth($decoded)){
                         $response = $this->error(["error" => "Invalid Token."]);
                     }

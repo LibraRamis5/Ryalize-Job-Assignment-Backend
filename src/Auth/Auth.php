@@ -8,7 +8,7 @@ use Firebase\JWT\JWT;
 class Auth{
 
 	private static $user;
-	public static $secret = 'sdasdasdasdasdasd';
+	public static $secret = 'NOTHINGISIMPPOSBILE630';
 
 	public static function setAuth($data){
 		try{

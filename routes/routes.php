@@ -14,23 +14,24 @@ use App\Middleware\AuthMiddleware;
 
 return function (App $app) {
 
-//    $app->group('', function () use ($app) {
+    // home page routes
+    $app->get('/', HomePageAction::class);
 
-            // home page routes
-            $app->get('/', HomePageAction::class);
+    // login api
+    $app->post('/user-login', UserLoginAction::class);
+
+    // make group to add api in auth
+    $app->group('', function () use ($app) {
 
             // user routes
             $app->get('/user', GetUserAction::class);
-            $app->get('/is-user-login', IsUserLoginAction::class)->add(AuthMiddleware::class);
-            $app->post('/user-login', UserLoginAction::class);
-            $app->get('/user-single/'.'{$id}', SingleUserAction::class)->add(AuthMiddleware::class);
+            $app->get('/is-user-login', IsUserLoginAction::class);
+            $app->get('/user-single/{$id}', SingleUserAction::class);
             $app->get('/user-transaction', GetUserTransactionAction::class);
-            $app->post('/user-add', AddUserAction::class)->add(AuthMiddleware::class);
-            $app->put('/user-update', UpdateUserAction::class)->add(AuthMiddleware::class);
-            $app->get('/location', GetLocationAction::class)->add(AuthMiddleware::class);
+            $app->post('/user-add', AddUserAction::class);
+            $app->put('/user-update', UpdateUserAction::class);
+            $app->get('/location', GetLocationAction::class);
 
-//    })->add(AuthMiddleware::class);
-
-
+    })->add(AuthMiddleware::class);
 
 };
