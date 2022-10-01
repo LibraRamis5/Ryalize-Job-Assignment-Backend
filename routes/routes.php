@@ -26,7 +26,7 @@ return function (App $app) {
             // user routes
             $app->get('/user', GetUserAction::class);
             $app->get('/is-user-login', IsUserLoginAction::class);
-            $app->get('/user-single/{$id}', SingleUserAction::class);
+            $app->get('/user-single/:id', SingleUserAction::class);
             $app->get('/user-transaction', GetUserTransactionAction::class);
             $app->post('/user-add', AddUserAction::class);
             $app->put('/user-update', UpdateUserAction::class);
