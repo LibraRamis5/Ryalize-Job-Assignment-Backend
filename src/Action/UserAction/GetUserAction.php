@@ -21,7 +21,7 @@ final class GetUserAction extends Action{
 
     public function __invoke(Request $request, Response $response, $args): Response {
 
-        $data = (array)$request->getQueryParams();
+        $data = $request->getQueryParams();
         $validation = $this->validate($data, [
             'per_page' => 'required|integer',
             'page' => 'required|integer',
