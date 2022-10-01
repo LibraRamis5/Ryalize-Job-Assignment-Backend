@@ -15,7 +15,7 @@ final class UpdateUserAction extends Action
 
         $validation = $this->validate($data, [
             'id' => 'required|numeric',
-            'user_name' => 'regex:/^[a-zA-Z]+$/u|min:3|max:20',
+            'user_name' => 'regex:/^[a-zA-Z\ ]+$/u|min:3|max:20',
             'phone_no' => 'regex:/^[0-9]/|max:12',
             'address' => 'regex:/(^[-0-9A-Za-z.,\/ ]+$)/|max:50',
         ]);

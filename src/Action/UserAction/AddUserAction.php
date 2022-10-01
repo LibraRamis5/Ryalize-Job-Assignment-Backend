@@ -13,7 +13,7 @@ final class AddUserAction extends Action
         $data = (array)$request->getParsedBody();
 
         $validation = $this->validate($data, [
-            'user_name' => 'required|regex:/^[a-zA-Z]+$/u|min:3|max:20',
+            'user_name' => 'required|regex:/^[a-zA-Z\ ]+$/u|min:3|max:20',
             'email' => 'required|email',
             'phone_no' => 'required|regex:/^[0-9]/|max:12',
             'address' => 'required|regex:/(^[-0-9A-Za-z.,\/ ]+$)/|max:50',
