@@ -46,14 +46,3 @@ class AuthMiddleware{
              return $response;
     }
 }
-
-
-//        $token = [
-//"iat" => time(),
-//"exp" => time() + 2592000,
-//"data" => [
-//"user_id" => 2
-//]
-//];
-//$jwt = JWT::encode($token, Auth::$secret);
-//return $this->error(["error" => $jwt]);
