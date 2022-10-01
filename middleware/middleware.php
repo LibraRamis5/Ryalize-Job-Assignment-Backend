@@ -1,8 +1,12 @@
 <?php
 
 use Slim\App;
+use App\Middleware\CORSMiddleware;
+use App\Middleware\HTMLErrorMiddleware;
+
 
 return function (App $app) {
+    $app->add(CORSMiddleware::class);
 
     // Parse json, form data and xml
     $app->addBodyParsingMiddleware();
@@ -11,5 +15,7 @@ return function (App $app) {
     $app->addRoutingMiddleware();
 
     // Handle exceptions
-    $app->addErrorMiddleware(true, true, true);
+    $errorMiddleware = $app->addErrorMiddleware(true, true, true);
+    $errorMiddleware->setDefaultErrorHandler(HTMLErrorMiddleware::class);
+
 };
