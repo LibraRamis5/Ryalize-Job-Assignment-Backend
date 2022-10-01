@@ -2,7 +2,6 @@
 namespace App\Action\UserAction;
 
 use App\Action\Action;
-use Illuminate\Support\Facades\Hash;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Models\User;
