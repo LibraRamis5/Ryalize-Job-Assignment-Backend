@@ -20,6 +20,14 @@ class Auth{
 		}
 	}
 
+    public static function hash($password){
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    public static function verifyPassword($user,$password){
+        return password_verify($password, $user->password);
+    }
+
 	public static function login($user){
 		$token = [
 			"iat" => time(),

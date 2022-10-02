@@ -24,22 +24,19 @@ final class UserLoginAction extends Action
         }
 
         try{
-
             $userObject = User::where('email',$data['email'])->first();
-            if ($userObject){
+            if ($userObject && Auth::verifyPassword($userObject,$data['password'])){
                 $result = Auth::login($userObject);
                 $userObject->token = $result;
                 return $this->responce($response, $userObject, 200);
-
             }else{
-                $errorMessage['message'] = 'user name or password is invalid';
-                return $this->responce($response, $errorMessage, 200);
-            }
-
-        }catch(\Exception $e){
-            return $this->error($response, $e->getMessage());
+            $errorMessage['message'] = 'user name or password is invalid';
+            return $this->responce($response, $errorMessage, 200);
         }
 
+        }catch(\Exception $e){
+            return $this->error($response, "user name or password is invalid");
+        }
     }
 }
     
