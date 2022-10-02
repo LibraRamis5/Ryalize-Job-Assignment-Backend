@@ -21,21 +21,22 @@ final class GetUserAction extends Action{
 
     public function __invoke(Request $request, Response $response, $args): Response {
 
-        $data = $request->getQueryParams();
-        $validation = $this->validate($data, [
-            'per_page' => 'required|integer',
-            'page' => 'required|integer',
-        ]);
-
-        if($validation){
-            return $this->responce($response, $validation, 401);
-        }
+//        $data = $request->getQueryParams();
+//        $validation = $this->validate($data, [
+//            'per_page' => 'required|integer',
+//            'page' => 'required|integer',
+//        ]);
+//
+//        if($validation){
+//            return $this->responce($response, $validation, 401);
+//        }
 
         try{
 
             $requestParams = $request->getQueryParams();
 
-            $users = User::paginate($requestParams['per_page'], ['*'], 'page', $requestParams['page']);
+//            $users = User::paginate($requestParams['per_page'], ['*'], 'page', $requestParams['page']);
+            $users = User::paginate(50);
 
             $data = ['message' => 'user list', 'data' => $users];
             return $this->success($response,$data);
