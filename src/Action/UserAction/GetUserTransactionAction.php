@@ -16,15 +16,15 @@ final class GetUserTransactionAction extends Action{
     
         try{
 
-            $requestParams = $request->getQueryParams();
-            $validation = $this->validate($requestParams, [
-                'per_page' => 'required|integer',
-                'page' => 'required|integer',
-            ]);
-
-            if($validation){
-                return $this->responce($response, $validation, 401);
-            }
+//            $requestParams = $request->getQueryParams();
+//            $validation = $this->validate($requestParams, [
+//                'per_page' => 'required|integer',
+//                'page' => 'required|integer',
+//            ]);
+//
+//            if($validation){
+//                return $this->responce($response, $validation, 401);
+//            }
 
             $transactions = ViewUserTransaction::query();
 
@@ -36,7 +36,8 @@ final class GetUserTransactionAction extends Action{
                 $transactions = $transactions->where('location_id', $requestParams['location_id']);
             }
 
-            $transactions = $transactions->paginate($requestParams['per_page'], ['*'], 'page', $requestParams['page']);
+//            $transactions = $transactions->paginate($requestParams['per_page'], ['*'], 'page', $requestParams['page']);
+            $transactions = $transactions->paginate(20);
             $data = ['message' => 'user transactions', 'data' => $transactions];
 
             return $this->success($response,$data);
