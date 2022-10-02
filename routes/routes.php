@@ -21,7 +21,7 @@ return function (App $app) {
     $app->post('/user-login', UserLoginAction::class);
 
     // make group to add api in auth
-    $app->group('', function () use ($app) {
+//    $app->group('', function () use ($app) {
 
             // user routes
             $app->get('/user', GetUserAction::class);
@@ -32,6 +32,6 @@ return function (App $app) {
             $app->put('/user-update', UpdateUserAction::class);
             $app->get('/location', GetLocationAction::class);
 
-    })->add(AuthMiddleware::class);
+//    })->add(AuthMiddleware::class);
 
 };

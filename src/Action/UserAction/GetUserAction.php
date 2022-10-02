@@ -36,7 +36,7 @@ final class GetUserAction extends Action{
             $requestParams = $request->getQueryParams();
 
 //            $users = User::paginate($requestParams['per_page'], ['*'], 'page', $requestParams['page']);
-            $users = User::paginate(50);
+            $users = User::paginate(150);
 
             $data = ['message' => 'user list', 'data' => $users];
             return $this->success($response,$data);
